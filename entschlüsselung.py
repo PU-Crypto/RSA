@@ -2,12 +2,12 @@
 
 c = int(input("Crypted Text:"))
 
-with open("key.txt")as rfile:
-	lines = rfile.readlines()[0:4]
+with open("privatekey.txt")as rfile:
+	lines = rfile.readlines()[0:2]
 
 n = int(lines[0])
 
-d = int(lines[2])
+d = int(lines[1])
 
 
 c=c**d

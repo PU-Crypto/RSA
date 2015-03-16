@@ -54,9 +54,12 @@ print(e)
 print("D:")
 print(d)
 
-with open("Key.txt", "w") as text_file :
+with open("publicKey.txt", "w") as text_file :
 	print(str(n), file=text_file)
 	print(str(e), file=text_file)
+
+with open("privateKey.txt", "w") as text_file :
+	print(str(n), file=text_file)
 	print(str(d), file=text_file)
 
 

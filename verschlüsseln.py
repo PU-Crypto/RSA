@@ -4,8 +4,8 @@ import sys
 
 m = int(input("TrueText:"))
 
-with open("key.txt")as rfile:
-	lines = rfile.readlines()[0:4]
+with open("publicKey.txt")as rfile:
+	lines = rfile.readlines()[0:2]
 
 n = int(lines[0])
 e = int(lines[1])
