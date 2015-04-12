@@ -1,7 +1,4 @@
-#Verschlüsselung
-
-import sys
-
+#Entschlüsselung
 #implemention begin
 # source : https://gist.github.com/avalonalex/2122098
 
@@ -15,7 +12,8 @@ def int2baseTwo(x):
         bitInverse.append(x & 1)
         x >>= 1
     return bitInverse
-
+ 
+ 
 def modExp(a, d, n):
     """returns a ** d (mod n)"""
     assert d >= 0
@@ -32,34 +30,36 @@ def modExp(a, d, n):
     for i in range(0, base2DLength):
         if base2D[i] == 1:
             result *= base2D[i] * modArray[i]
-    return result % n
-#implementation end
+    return result%n
 
-text = input("TrueText als Buchstaben:")
+#implemention end
 
-text=text.encode('utf-8')
-list(text)
-sammlung = []
-
-for i in range(0,len(text)): #erstelle einen array mit zahlen 
-        dump=text[i]
-        sammlung.append(dump)
-
-print(sammlung)
-
-with open("publicKey.txt")as rfile:
+with open("privatekey.txt")as rfile:
 	lines = rfile.readlines()[0:2]
-
 n = int(lines[0])
-e = int(lines[1])
+d = int(lines[1])
 
-for x in range(0,(len(sammlung))):
-	sammlung[x] = modExp(sammlung[x], e, n)
+with open("cypher.txt")as rfile:
+	grenze = int(rfile.readlines()[0])
 
-print("Crypted list:")
+with open("cypher.txt")as rfile:
+		sammlung = rfile.readlines()[1:int(grenze)+1]
+
+for x in range(0,len(sammlung)):
+	sammlung[x] = int(sammlung[x])	
+
+
+for x in range(0,len(sammlung)):
+	sammlung[x] = modExp(sammlung[x], d, n)
+	
 print(sammlung)
+text = ''
 
-with open("cypher.txt", "w") as text_file :
-	print(str(len(sammlung)), file=text_file)
-	for x in range(0,len(sammlung)):
-		print(str(sammlung[x]), file=text_file)
+for x in range(0,len(sammlung)):
+	sammlung[x] = chr(sammlung[x])
+	text = text+sammlung[x]
+
+print(text)
+
+with open("Truetext.txt", "w")as rfile:
+	print(text, file =rfile)
