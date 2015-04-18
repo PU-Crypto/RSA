@@ -2,9 +2,8 @@
 #implemention begin
 # source : https://gist.github.com/avalonalex/2122098
 
-def int2baseTwo(x):
-    """x is a positive integer. Convert it to base two as a list of integers
-    in reverse order as a list."""
+def int2baseTwo(x): #ermöglicht rechnung mit sehr großen zahlen bei geringen ressourcen
+    # x is a positive integer. Convert it to base two as a list of integers in reverse order."""
     # repeating x >>= 1 and x & 1 will do the trick
     assert x >= 0
     bitInverse = []
@@ -14,8 +13,7 @@ def int2baseTwo(x):
     return bitInverse
  
  
-def modExp(a, d, n):
-    """returns a ** d (mod n)"""
+def modExp(a, d, n): # Expnonentiale modulo rechnung (a ** d (mod n)) ermöglicht schnelle rechnung mit Werten über Integergrenze
     assert d >= 0
     assert n >= 0
     base2D = int2baseTwo(d)
@@ -34,32 +32,32 @@ def modExp(a, d, n):
 
 #implemention end
 
-with open("privatekey.txt")as rfile:
+with open("privatekey.txt")as rfile: #Beide Private-Key teile werden eingelesen
 	lines = rfile.readlines()[0:2]
 n = int(lines[0])
 d = int(lines[1])
 
-with open("cypher.txt")as rfile:
+with open("cypher.txt")as rfile: #Aus der Cypher.txt wird die Anzahl der zuerwartenden Zeichen wieder
 	grenze = int(rfile.readlines()[0])
 
-with open("cypher.txt")as rfile:
+with open("cypher.txt")as rfile: #Zeichen selbst von Zeile 2 bis zur Anzahl der Zeichen + 1
 		sammlung = rfile.readlines()[1:int(grenze)+1]
 
-for x in range(0,len(sammlung)):
+for x in range(0,len(sammlung)): #Eingelesene Zeichen werden von String zu Integer formatiert 
 	sammlung[x] = int(sammlung[x])	
 
 
-for x in range(0,len(sammlung)):
+for x in range(0,len(sammlung)): #Entschlüsselung
 	sammlung[x] = modExp(sammlung[x], d, n)
 	
-print(sammlung)
+print(sammlung) #Entschlüsselte Zeichen liegen in Array vor 
 text = ''
 
-for x in range(0,len(sammlung)):
-	sammlung[x] = chr(sammlung[x])
-	text = text+sammlung[x]
+for x in range(0,len(sammlung)): 
+	sammlung[x] = chr(sammlung[x]) #Zeichen werden von Zahl zu Buchstabe gewandelt
+	text = text+sammlung[x] #Buchstaben werden in einen String geschrieben [H, a, l, l, o] => 'Hallo'
 
-print(text)
+print(text) #Entschlüsselter Text wird dem Nutzer gezeigt
 
-with open("Truetext.txt", "w")as rfile:
+with open("Truetext.txt", "w")as rfile: #Text wird gespeichert in Truetext.txt 
 	print(text, file =rfile)
