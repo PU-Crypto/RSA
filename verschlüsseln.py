@@ -15,7 +15,7 @@ def int2baseTwo(x): #ermöglicht rechnung mit sehr großen zahlen bei geringen r
         x >>= 1
     return bitInverse
 
-def modExp(a, d, n): # Expnentiale modulo rechnung (a ** d (mod n)) ermöglicht schnelle rechnung mit Werten über Integergrenze
+def modExp(a, d, n): # Expnonentiale modulo rechnung (a ** d (mod n)) ermöglicht schnelle rechnung mit Werten über Integergrenze
     assert d >= 0
     assert n >= 0
     base2D = int2baseTwo(d)
@@ -36,17 +36,17 @@ def modExp(a, d, n): # Expnentiale modulo rechnung (a ** d (mod n)) ermöglicht 
 
 text = input("TrueText als Buchstaben: ") #Zuverschlüsselnder Text nur UTF-8 unterstütze Zeichen
 
-text=text.encode('utf-8') #Jedes Zeichen wird durch seine Kennnummer ersetzt : Hallo => H:72, a:97, l:108, l:108, o:111=> 72, 97, 108, 108, 111
-list(text)
+#text=text.encode('utf-8') #Jedes Zeichen wird durch seine Kennnummer ersetzt : Hallo => H:72, a:97, l:108, l:108, o:111=> 72, 97, 108, 108, 111
+#list(text)
 sammlung = []
 
 for i in range(0,len(text)): #Zahlen werden nun in eigene Array position geschrieben 
-        dump=text[i]
+        dump=ord(text[i])
         sammlung.append(dump)
 
 print(sammlung) #Hallo würde jetzt so vorliegen : [72, 97, 108, 108, 111]
 
-with open("publicKey.txt")as rfile: #Public-Key wird aus der datei publicKey.txt ausgelesen
+with open("publicKey.txt")as rfile: #Public-Key wird aus der datei publicKey.txt eingelesen
 	lines = rfile.readlines()[0:2] #beginnent bei Zeile 0 und insgesamt 2 Zeilen (Zeile 1-2) Nach unserer Zählform
 
 n = int(lines[0])
