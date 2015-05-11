@@ -39,10 +39,10 @@ with open(name+".json")as f:
 	n = int(Key['n' ])
 	d = int(Key['d' ])
 
-with open("cypher.txt")as rfile: #Aus der Cypher.txt wird die Anzahl der zuerwartenden Zeichen wieder
+with open(name+"cypher.txt")as rfile: #Aus der Cypher.txt wird die Anzahl der zuerwartenden Zeichen wieder
 	grenze = int(rfile.readlines()[0])
 
-with open("cypher.txt")as rfile: #Zeichen selbst von Zeile 2 bis zur Anzahl der Zeichen + 1
+with open(name+"cypher.txt")as rfile: #Zeichen selbst von Zeile 2 bis zur Anzahl der Zeichen + 1
 		sammlung = rfile.readlines()[1:int(grenze)+1]
 
 for x in range(0,len(sammlung)): #Eingelesene Zeichen werden von String zu Integer formatiert 
@@ -61,5 +61,5 @@ for x in range(0,len(sammlung)):
 
 print(text) #Entschlüsselter Text wird dem Nutzer gezeigt
 
-with open("Truetext.txt", "w")as rfile: #Text wird gespeichert in Truetext.txt 
+with open(name+"Truetext.txt", "w")as rfile: #Text wird gespeichert in Truetext.txt 
 	print(text, file =rfile)

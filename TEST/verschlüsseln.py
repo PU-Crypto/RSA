@@ -65,7 +65,7 @@ for x in range(0,(len(sammlung))):
 print("Crypted list:") #Für den nutzer wird die Verschlüsselte folge gezeigt (kann auskommentiert werden)
 print(sammlung)
 
-with open("cypher.txt", "w") as text_file : #Cypher wird gespeichert in Cypher.txt
+with open(name+"cypher.txt", "w") as text_file : #Cypher wird gespeichert in Cypher.txt
 	print(str(len(sammlung)), file=text_file) #Die erste Zeile ist eine Zahl die die anzahl der zu erwartenden Zeichen (Anzahl der Arraypositionen) wiedergibt zum entschlüsseln wichtig
 	for x in range(0,len(sammlung)):
 		print(str(sammlung[x]), file=text_file) #Weitere Zeilen geben nun die verschlüsselten zeichen wieder wobei eine Zeile genau ein Zeichen entspricht 
