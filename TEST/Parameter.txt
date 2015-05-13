@@ -1,0 +1,5 @@
+-m=1 = Keygen
+   2 = Verschlüsseln
+   3 = Entschlüsseln
+
+-n=Name 
