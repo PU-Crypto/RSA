@@ -208,8 +208,12 @@ def entschl(name, text):
 	except OSError:
 		print('Fehler, kein Key für diese Namen vorhanden')
 		sys.exit()
-
-	grenze = int(text.split(',')[0])
+	try:
+		grenze = int(text.split(',')[0])
+	except IndexError :
+		print('Fehlerhafte Eingabe')
+		sys.exit()
+	
 	sammlung = []
 
 
@@ -225,6 +229,10 @@ def entschl(name, text):
 
 	for x in range(0,len(sammlung)): #Entschlüsselung
 		sammlung[x] = modExp(sammlung[x], d, n)
+		if x == 0:
+			if sammlung[x].length() > 5 : #Bei Falschem key währe der entschlüsselte Wert über 5 stellen lang (nur mit dem richtigen key kommt es zur UTF-8 reochweite)
+				print('Entschlüsselung unmöglich, ggf. ist der falsche Key ausgewählt oder ein Fehler in der Eingabe')
+				sys.exit()
 		
 	#print(sammlung) #Entschlüsselte Zeichen liegen in Array vor 
 	text = ''
